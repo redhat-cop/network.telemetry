@@ -35,7 +35,7 @@ collections:
 
 ## Usage
 
-#### Gather Telemetry Facts with `action: gather`
+### Gather Telemetry Facts with `action: gather`
 - This action "gathers" telemetry configuration from the target host and displays it.
 
 ```yaml
@@ -72,7 +72,7 @@ collections:
         - name: persist
 ```
 
-#### Deploy Telemetry Configuration with `action: deploy`
+### Deploy Telemetry Configuration with `action: deploy`
 - This action "deploys" (pushes) telemetry configuration defined in the host_vars (SoT) to the target hosts.
 
 ```yaml
@@ -118,7 +118,7 @@ health_checks.yml
 |   collector_stats   |         cisco.nxos         |
 
 
-#### Detect configuration drift in BGP Configuration
+### Detect configuration drift in Telemetry Configuration
 - Detect operation will read the facts from the provided/default inventory and detect if any configuration changes are there on the appliances using overridden state.
 
 ```yaml
