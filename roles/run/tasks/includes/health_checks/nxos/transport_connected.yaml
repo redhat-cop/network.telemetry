@@ -1,0 +1,24 @@
+---
+- name: Start transport_connected health check
+  block:
+    - name: Allow the dialout connection to be established
+      ansible.builtin.pause:
+        seconds: 10
+
+    - name: Fetch telemetry transport information
+      cisco.nxos.nxos_command:
+        commands: show telemetry transport
+      register: result
+
+    - name: Assert that all collectors are connected
+      ansible.builtin.assert:
+        that: "'Transmit Error' not in result.stdout[0]"
+
+    - name: Health check passed
+      ansible.builtin.set_fact:
+        _transport_connected: true
+
+  rescue:
+    - name: Health check failed
+      ansible.builtin.set_fact:
+        _transport_connected: false

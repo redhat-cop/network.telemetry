@@ -1,0 +1,14 @@
+---
+authors:
+  - Nilashish Chakraborty (@NilashishC)
+dependencies:
+  "ansible.netcommon": ">=5.1.1"
+  "ansible.utils": ">=2.9.0"
+license_file: LICENSE
+namespace: network
+name: telemetry
+description: An Ansible Collection that managing telemetry configuration on network devices.
+readme: README.md
+repository: https://github.com/redhat-cop/network.telemetry
+issues: https://github.com/redhat-cop/network.telemetry/issues
+version: 0.0.0-dev

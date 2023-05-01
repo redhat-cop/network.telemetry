@@ -1,0 +1,8 @@
+---
+# tasks file for run
+- name: Include tasks
+  ansible.builtin.include_tasks: includes/{{ action.name }}.yaml
+  loop: "{{ actions }}"
+  loop_control:
+    loop_var: action
+    label: "{{ action.name }}"
