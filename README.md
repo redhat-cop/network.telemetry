@@ -122,8 +122,9 @@ health_checks.yml
 |   collector_stats   |         cisco.nxos         |
 
 
-### Detect configuration drift in Telemetry Configuration
-- Detect operation will read the facts from the provided/default inventory and detect if any configuration changes are there on the appliances using overridden state.
+### Detect configuration drifts with `action: detect`
+
+- This action "detects" drifts by comparing on-box telemetry configuration with the source-of-truth.
 
 ```yaml
 - name: Detect drifts in telemetry configuration
@@ -137,6 +138,24 @@ health_checks.yml
       ansible_network_os: cisco.nxos.nxos
       actions:
         - name: detect
+```
+
+### Remediate configuration drifts with `action: remediate`
+
+- This action "remediates" drifts between on-box telemetry configuration and the source-of-truth.
+
+```yaml
+- name: Remediate drifts in telemetry configuration
+  hosts: nxos-9k
+  gather_facts: false
+  tasks:
+  - name: Run Telemetry Manager
+    include_role:
+      name: network.telemetry.run
+    vars:
+      ansible_network_os: cisco.nxos.nxos
+      actions:
+        - name: remediate
 ```
 
 ### Code of Conduct
