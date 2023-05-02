@@ -2,7 +2,7 @@
 authors:
   - Nilashish Chakraborty (@NilashishC)
 dependencies:
-  "ansible.netcommon": ">=5.1.1"
+  "ansible.netcommon": ">=5.0.0"
   "ansible.utils": ">=2.9.0"
 license_file: LICENSE
 namespace: network
