@@ -6,4 +6,3 @@
     action: "persist"
     resources:
       - "telemetry"
-    persist_empty: "{{ persist_empty }}"

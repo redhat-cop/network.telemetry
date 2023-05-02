@@ -14,6 +14,8 @@ Tested with ansible-core >=2.13 releases.
 ## Installation
 
 ```
+ansible-galaxy collection install git+https://github.com/redhat-cop/network.base,2.0.0
+
 ansible-galaxy collection install git+https://github.com/redhat-cop/network.telemetry
 ```
 
