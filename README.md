@@ -14,6 +14,8 @@ Tested with ansible-core >=2.13 releases.
 ## Installation
 
 ```
+ansible-galaxy collection install git+https://github.com/redhat-cop/network.base,2.0.0
+
 ansible-galaxy collection install git+https://github.com/redhat-cop/network.telemetry
 ```
 
@@ -56,7 +58,8 @@ collections:
 
 - Gather telemetry configuration (as structured data) from the target host and build a source-of-truth.
 - This action "persists" the gathered telemetry configuration into a flat-file (`telemetry.yaml`) in YAML format.
-- The resulting file will be created under `host_vars/{{ inventory_hostname }}/` directory.
+- By default, this file will be created under `host_vars/{{ inventory_hostname }}/` directory. You can override this
+  by setting the `inventory_directory` variable.
 
 ```yaml
 - name: Persist telemetry configuration as host_vars
@@ -70,6 +73,7 @@ collections:
       ansible_network_os: cisco.nxos.nxos
       actions:
         - name: persist
+          inventory_directory: /path/to/inventory
 ```
 
 ### Deploy Telemetry Configuration with `action: deploy`

@@ -1,0 +1,4 @@
+---
+skip_list:
+  - galaxy[version-incorrect]
+  - no-jinja-when

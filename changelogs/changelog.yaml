@@ -1,0 +1,9 @@
+ancestor: null
+releases:
+  0.0.1-dev:
+    changes:
+      release_summary: Release 0.0.1-dev with support for dial-out and health checks.
+    fragments:
+      - basic.yaml
+      - release_summary.yaml
+    release_date: "2023-05-02"
