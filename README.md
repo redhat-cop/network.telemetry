@@ -13,9 +13,16 @@ Tested with ansible-core >=2.13 releases.
 
 ## Installation
 
+#### Prerequisites
+
+The collection requires `network.base:2.0.0` to function.
 ```
 ansible-galaxy collection install git+https://github.com/redhat-cop/network.base,2.0.0
+```
 
+#### Install `network.telemetry`
+
+```
 ansible-galaxy collection install git+https://github.com/redhat-cop/network.telemetry
 ```
 
@@ -31,7 +38,7 @@ collections:
 ## Capabilities
 - `Gather Telemetry Facts`: Gather telemetry facts from network devices and store it as host_vars (locally or remote), enabling the creation of a telemetry source-of-truth on a per target host basis.
 
-- `Configure Telemetry`: Manage telemetry as a discrete resource on target hosts. Use locally or remotely stored source-of-truth to push (or update) configuration and also detect drifts.
+- `Manage Telemetry Configuration`: Configure telemetry as a discrete resource on target hosts. Use locally or remotely stored source-of-truth to push (or update) configuration and also detect/remediate drifts.
 
 - `Perform Telemetry Health Checks`: Run health checks to validate the telemetry process running on target hosts. Check for transport connection status, verify data collection statistics for sensor paths, and more.
 
