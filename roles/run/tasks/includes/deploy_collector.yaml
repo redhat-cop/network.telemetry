@@ -1,0 +1,7 @@
+---
+- name: Start action deploy_collector
+  ansible.builtin.debug:
+    msg: "### Starting deploy_collector action ###"
+
+- name: Install docker
+  ansible.builtin.include_tasks: includes/docker.yaml

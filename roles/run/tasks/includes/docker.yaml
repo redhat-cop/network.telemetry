@@ -1,0 +1,38 @@
+---
+- name: Detect target host distribution
+  ansible.builtin.set_fact:
+    distro: "{{ 'rhel' if (ansible_distribution == 'RedHat') else (ansible_distribution | lower) }}"
+
+- name: "{{ inventory_hostname }} - Installing docker"
+  block:
+    - name: Add GPG key to RPM DB
+      ansible.builtin.rpm_key:
+        key: "https://download.docker.com/linux/{{ distro }}/gpg"
+        state: present
+
+    - name: Add YUM repository
+      ansible.builtin.yum_repository:
+        name: docker
+        description: Docker CE Stable
+        # https://docs.docker.com/engine/install/rhel/#prerequisites
+        baseurl: "https://download.docker.com/linux/{{ distro | replace('rhel', 'centos') }}/$releasever/$basearch/stable"
+        enabled: true
+        gpgcheck: true
+        gpgkey: "https://download.docker.com/linux/{{ distro }}/gpg"
+
+    - name: Install docker
+      ansible.builtin.dnf:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-compose-plugin
+        state: latest
+        update_cache: true
+  when: distro in ["rhel", "fedora", "centos"]
+
+- name: Start docker service
+  ansible.builtin.service:
+    name: "docker"
+    enabled: true
+    state: started
