@@ -3,7 +3,8 @@
   ansible.builtin.set_fact:
     distro: "{{ 'rhel' if (ansible_distribution == 'RedHat') else (ansible_distribution | lower) }}"
 
-- name: "{{ inventory_hostname }} - Installing docker"
+- name: "Start installing docker"
+  when: distro in ["rhel", "fedora", "centos"]
   block:
     - name: Add GPG key to RPM DB
       ansible.builtin.rpm_key:
@@ -27,9 +28,7 @@
           - docker-ce-cli
           - containerd.io
           - docker-compose-plugin
-        state: latest
         update_cache: true
-  when: distro in ["rhel", "fedora", "centos"]
 
 - name: Start docker service
   ansible.builtin.service:
