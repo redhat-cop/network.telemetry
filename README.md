@@ -103,7 +103,6 @@ collections:
 ### Perform Telemetry Health Checks with `action: health_check`
 
 ```yaml
-health_checks.yml
 ---
 - name: Perform telemetry health checks
   hosts: nxos-9k
