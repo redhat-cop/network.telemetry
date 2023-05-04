@@ -1,2 +1,7 @@
 ---
 # vars file for run
+
+supported_distros:
+  - rhel
+  - fedora
+  - centos
