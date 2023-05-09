@@ -7,7 +7,7 @@
   ansible.builtin.include_role:
     name: network.base.resource_manager
   vars:
-    action: "deploy"
+    action: deploy
     resources:
       - telemetry
     inventory_directory: "{{ inv }}"

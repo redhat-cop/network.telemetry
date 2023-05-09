@@ -3,7 +3,6 @@
   ansible.builtin.set_fact:
     checks: "{{ action['vars']['checks'] | d([]) }}"
     failed_checks: []
-
 - name: Include tasks
   ansible.builtin.include_tasks: ./health_checks/{{ ansible_network_os.split('.')[-1] }}/{{ check.name }}.yaml
   loop: "{{ checks }}"

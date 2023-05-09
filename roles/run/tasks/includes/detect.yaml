@@ -3,7 +3,7 @@
   ansible.builtin.include_role:
     name: network.base.resource_manager
   vars:
-    action: "detect"
-    state: "overridden"
+    action: detect
+    state: overridden
     resources:
-      - "telemetry"
+      - telemetry

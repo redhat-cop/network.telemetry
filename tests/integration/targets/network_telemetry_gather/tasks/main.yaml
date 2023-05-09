@@ -22,4 +22,4 @@
 - name: Assert that gathered facts are correct
   ansible.builtin.assert:
     that:
-      - "result.gathered == {{ network_os }}"
+      - result.gathered == {{ network_os }}

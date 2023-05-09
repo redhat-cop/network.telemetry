@@ -1,3 +1,4 @@
+---
 telemetry:
   compression: gzip
   destination_groups:

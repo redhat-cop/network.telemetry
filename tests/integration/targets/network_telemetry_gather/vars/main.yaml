@@ -1,3 +1,4 @@
+---
 nxos:
   compression: gzip
   destination_groups:
