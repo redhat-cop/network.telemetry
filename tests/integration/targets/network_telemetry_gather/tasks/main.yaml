@@ -1,0 +1,25 @@
+---
+- name: Detect network os
+  ansible.builtin.set_fact:
+    network_os: "{{ ansible_network_os.split('.')[-1] }}"
+
+- name: Reset telemetry config
+  ansible.builtin.include_tasks:
+    file: _reset_config.yaml
+
+- name: Populate telemetry config
+  ansible.builtin.include_tasks:
+    file: _populate_config.yaml
+
+- name: Run network.telemetry validated content
+  ansible.builtin.include_role:
+    name: network.telemetry.run
+  vars:
+    actions:
+      - name: gather
+  register: result
+
+- name: Assert that gathered facts are correct
+  ansible.builtin.assert:
+    that:
+      - result.gathered == {{ network_os }}

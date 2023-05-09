@@ -2,16 +2,16 @@
 - name: Copy docker-compose file
   ansible.builtin.template:
     src: templates/docker-compose.yaml.j2
-    dest: "/home/{{ ansible_user }}/docker-compose.yaml"
+    dest: /home/{{ ansible_user }}/docker-compose.yaml
     mode: "0644"
 
 - name: Copy telegraf.conf file
   ansible.builtin.copy:
     src: files/telegraf
-    dest: "/home/{{ ansible_user }}/"
+    dest: /home/{{ ansible_user }}/
     mode: "0644"
 
 - name: Start docker containers
-  ansible.builtin.command: "docker compose up -d"
+  ansible.builtin.command: docker compose up -d
   register: docker_compose_up
   changed_when: docker_compose_up.rc != 0

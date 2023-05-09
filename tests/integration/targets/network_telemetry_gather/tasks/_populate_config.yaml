@@ -1,0 +1,5 @@
+---
+- name: Populate target device with telemetry configuration
+  ansible.netcommon.cli_config:
+    config: "{{ lookup('file', 'files/populate/{{ network_os }}.txt') }}"
+    diff_match: none
