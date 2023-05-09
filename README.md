@@ -168,16 +168,9 @@ This collection follows the Ansible project's
 [Code of Conduct](https://docs.ansible.com/ansible/devel/community/code_of_conduct.html).
 Please read and familiarize yourself with this document.
 
-
 ## Release notes
 
 Release notes are available [here](https://github.com/redhat-cop/network.telemetry/blob/main/CHANGELOG.rst).
-
-## Licensing
-
-GNU General Public License v3.0 or later.
-
-See [COPYING](https://www.gnu.org/licenses/gpl-3.0.txt) to see the full text.
 
 ## Contributing to this collection
 
@@ -218,3 +211,9 @@ collector01
 ```shell
   ansible-test network-integration -i /path/to/inventory --python 3.9 [target]
 ```
+
+## Licensing
+
+GNU General Public License v3.0 or later.
+
+See [COPYING](https://www.gnu.org/licenses/gpl-3.0.txt) to see the full text.
