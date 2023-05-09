@@ -216,5 +216,5 @@ collector01
 ```
 
 ```shell
-  ansible-test integration [target]
+  ansible-test network-integration -i /path/to/inventory --python 3.9 [target]
 ```
