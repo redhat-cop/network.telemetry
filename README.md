@@ -124,8 +124,7 @@ collections:
 
 |     Health Check    |        Supported For       |
 |:-------------------:|:--------------------------:|
-| transport_connected | cisco.nxos <br/> cisco.ios |
-|   collector_stats   |         cisco.nxos         |
+| transport_connected |         cisco.nxos         |
 
 
 ### Detect configuration drifts with `action: detect`
@@ -179,3 +178,43 @@ Release notes are available [here](https://github.com/redhat-cop/network.telemet
 GNU General Public License v3.0 or later.
 
 See [COPYING](https://www.gnu.org/licenses/gpl-3.0.txt) to see the full text.
+
+## Contributing to this collection
+
+We welcome community contributions to this collection. If you find problems, please open an issue or create a PR against this repository.
+
+### Testing and Development
+
+The project uses tox to run `ansible-lint` and `ansible-test sanity`.
+Assuming this repository is checked out in the proper structure,
+e.g. `collections_root/ansible_collections/network/telemetry`, run:
+
+```shell
+  tox -e ansible-lint
+  tox -e py39-sanity
+```
+
+To run integration tests, ensure that your inventory has a `network_telemetry` group.
+Depending on what test target you are running, comment out the host(s).
+
+```shell
+[network_telemetry]
+nxos
+collector01
+
+[nxos_9k]
+nxos
+
+[collectors]
+collector01
+
+[nxos_9k:vars]
+< enter inventory details for this group >
+
+[collectors:vars]
+< enter inventory details for this group >
+```
+
+```shell
+  ansible-test integration [target]
+```
