@@ -163,6 +163,50 @@ collections:
         - name: remediate
 ```
 
+### Deploy a telemetry collector for use with Event-Driven Ansible
+
+- This action builds a containerized Telegraf - Kafka that collects telemetry from network devices.
+- The Telegraf container is configured to receives the data on port 57000 and write it to the Kafka topic `eda`.
+- The Kafka container is configured to listen for reads/writes on port `9092`.
+- An EDA rulebook can then read the telemetry data from this Kafka topic by leveraging the Kafka source plugin
+  and take actions.
+- Optionally, you can set the `kafka_external_listener` variable to the IP address of the host where these containers
+  are deployed. This is required when EDA is running on a different host.
+
+```yaml
+- name: Deploy telemetry collector
+  hosts: collector01
+  gather_facts: true
+  tasks:
+  - name: Run Telemetry Manager
+    include_role:
+      name: network.telemetry.run
+    vars:
+      actions:
+        - name: deploy_collector
+          kafka_external_listener: 203.0.113.100 # optional
+```
+**Example Rulebook**
+
+```yaml
+- name: Report incident to ServiceNow
+  hosts: nxos
+  sources:
+    - ansible.eda.kafka:
+        host: 203.0.113.100
+        topic: eda
+        port: 9092
+  rules:
+    - name: Check route count drops
+      condition:
+        all:
+          - event.fields.routeCount < 100
+          - event.tags.vrfName == "prod"
+      actions:
+        - run_playbook:
+            name: report_event.yaml
+```
+
 ### Code of Conduct
 This collection follows the Ansible project's
 [Code of Conduct](https://docs.ansible.com/ansible/devel/community/code_of_conduct.html).
