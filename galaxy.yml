@@ -12,4 +12,4 @@ description: An Ansible Collection for managing telemetry configuration on netwo
 readme: README.md
 repository: https://github.com/redhat-cop/network.telemetry
 issues: https://github.com/redhat-cop/network.telemetry/issues
-version: "0.0.2-dev"
+version: "0.0.1"
