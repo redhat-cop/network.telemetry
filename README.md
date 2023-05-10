@@ -166,7 +166,7 @@ collections:
 ### Deploy a telemetry collector for use with Event-Driven Ansible
 
 - This action builds a containerized Telegraf - Kafka that collects telemetry from network devices.
-- The Telegraf container is configured to receives the data on port 57000 and write it to the Kafka topic `eda`.
+- The Telegraf container is configured to receive the data on port 57000 and write it to the Kafka topic `eda`.
 - The Kafka container is configured to listen for reads/writes on port `9092`.
 - An EDA rulebook can then read the telemetry data from this Kafka topic by leveraging the Kafka source plugin
   and take actions.
