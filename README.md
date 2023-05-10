@@ -207,6 +207,17 @@ collections:
             name: report_event.yaml
 ```
 
+### Support Matrix
+
+|      Action      |               Platform              |
+|:----------------:|:-----------------------------------:|
+|      deploy      |             Cisco NX-OS             |
+|      gather      |             Cisco NX-OS             |
+|      persist     |             Cisco NX-OS             |
+|     remediate    |             Cisco NX-OS             |
+|      detect      |             Cisco NX-OS             |
+| deploy_collector | RHEL <br/> CentOS <br/> Fedora<br/> |
+
 ### Code of Conduct
 This collection follows the Ansible project's
 [Code of Conduct](https://docs.ansible.com/ansible/devel/community/code_of_conduct.html).
