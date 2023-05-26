@@ -1,3 +1,4 @@
+[![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/7404/badge)](https://bestpractices.coreinfrastructure.org/projects/7404)
 # Network Telemetry Validated Content
 
 This repository contains the `network.telemetry` Ansible Collection.
