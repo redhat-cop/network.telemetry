@@ -11,7 +11,9 @@ on:
 
 jobs:
   ansible-lint:
-    uses: ansible-network/github_actions/.github/workflows/ansible-lint.yml@main
+    uses: NilashishC/github_actions/.github/workflows/ansible-lint.yml@main
+    with:
+      path: "--profile-production"
   changelog:
     uses: ansible-network/github_actions/.github/workflows/changelog.yml@main
   sanity:
