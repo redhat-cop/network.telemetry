@@ -1,6 +1,6 @@
+# Network Telemetry Validated Content
 [![CI](https://github.com/ansible-network/network.telemetry/actions/workflows/tests.yml/badge.svg?event=schedule)](https://github.com/ansible-network/network.telemetry/actions/workflows/tests.yml)
 [![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/7404/badge)](https://bestpractices.coreinfrastructure.org/projects/7404)
-# Network Telemetry Validated Content
 
 This repository contains the `network.telemetry` Ansible Collection.
 
