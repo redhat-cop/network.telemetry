@@ -1,8 +1,8 @@
 ---
 # tasks file for run
 - name: Include tasks
-  ansible.builtin.include_tasks: includes/{{ action.name }}.yaml
-  loop: "{{ actions }}"
+  ansible.builtin.include_tasks: includes/{{ operation.name }}.yaml
+  loop: "{{ operations }}"
   loop_control:
-    loop_var: action
-    label: "{{ action.name }}"
+    loop_var: operation
+    label: "{{ operation.name }}"

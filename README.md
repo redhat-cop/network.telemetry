@@ -59,7 +59,7 @@ collections:
       name: network.telemetry.run
     vars:
       ansible_network_os: cisco.nxos.nxos
-      actions:
+      operations:
         - name: gather
 ```
 
@@ -67,8 +67,9 @@ collections:
 
 - Gather telemetry configuration (as structured data) from the target host and build a source-of-truth.
 - This action "persists" the gathered telemetry configuration into a flat-file (`telemetry.yaml`) in YAML format.
-- By default, this file will be created under `host_vars/{{ inventory_hostname }}/` directory. You can override this
-  by setting the `inventory_directory` variable.
+- By default, this file will be created under `host_vars/{{ inventory_hostname }}/` directory.
+- To persist this data in a remote scm, specify details in the `scm` option under `data_store` key.
+- Or, to persist this data locally, please specify the path in the `local` option under the `data_store` key.
 
 ```yaml
 - name: Persist telemetry configuration as host_vars
@@ -80,9 +81,17 @@ collections:
       name: network.telemetry.run
     vars:
       ansible_network_os: cisco.nxos.nxos
-      actions:
+      operations:
         - name: persist
-          inventory_directory: /path/to/inventory
+      data_store:
+        scm:
+          origin:
+            url: "/path/to/remote/scm"
+            token: "superSecretToken"
+            user:
+              name: scm_user_name
+        local: ./telemetry_backup # optional
+
 ```
 
 ### Deploy Telemetry Configuration with `action: deploy`
@@ -98,8 +107,15 @@ collections:
       name: network.telemetry.run
     vars:
       ansible_network_os: cisco.nxos.nxos
-      actions:
+      operations:
         - name: deploy
+      data_store:
+        scm:
+          origin:
+            url: "/path/to/remote/scm"
+            token: "superSecretToken"
+            user:
+              name: scm_user_name
 ```
 
 ### Perform Telemetry Health Checks with `action: health_check`
@@ -115,7 +131,7 @@ collections:
       name: network.telemetry.run
     vars:
       ansible_network_os: cisco.nxos.nxos
-      actions:
+      operations:
         - name: health_check
           vars:
             checks:
@@ -129,49 +145,13 @@ collections:
 | transport_connected |         cisco.nxos         |
 
 
-### Detect configuration drifts with `action: detect`
-
-- This action "detects" drifts by comparing on-box telemetry configuration with the source-of-truth.
-
-```yaml
-- name: Detect drifts in telemetry configuration
-  hosts: nxos-9k
-  gather_facts: false
-  tasks:
-  - name: Run Telemetry Manager
-    include_role:
-      name: network.telemetry.run
-    vars:
-      ansible_network_os: cisco.nxos.nxos
-      actions:
-        - name: detect
-```
-
-### Remediate configuration drifts with `action: remediate`
-
-- This action "remediates" drifts between on-box telemetry configuration and the source-of-truth.
-
-```yaml
-- name: Remediate drifts in telemetry configuration
-  hosts: nxos-9k
-  gather_facts: false
-  tasks:
-  - name: Run Telemetry Manager
-    include_role:
-      name: network.telemetry.run
-    vars:
-      ansible_network_os: cisco.nxos.nxos
-      actions:
-        - name: remediate
-```
-
 ### Deploy a telemetry collector for use with Event-Driven Ansible
 
 - This action builds a containerized Telegraf - Kafka that collects telemetry from network devices.
 - The Telegraf container is configured to receive the data on port 57000 and write it to the Kafka topic `eda`.
 - The Kafka container is configured to listen for reads/writes on port `9092`.
 - An EDA rulebook can then read the telemetry data from this Kafka topic by leveraging the Kafka source plugin
-  and take actions.
+  and take operations.
 - Optionally, you can set the `kafka_external_listener` variable to the IP address of the host where these containers
   are deployed. This is required when EDA is running on a different host.
 
@@ -184,7 +164,7 @@ collections:
     include_role:
       name: network.telemetry.run
     vars:
-      actions:
+      operations:
         - name: deploy_collector
           kafka_external_listener: 203.0.113.100 # optional
 ```
@@ -216,8 +196,6 @@ collections:
 |      deploy      |             Cisco NX-OS             |
 |      gather      |             Cisco NX-OS             |
 |      persist     |             Cisco NX-OS             |
-|     remediate    |             Cisco NX-OS             |
-|      detect      |             Cisco NX-OS             |
 | deploy_collector | RHEL <br/> CentOS <br/> Fedora<br/> |
 
 ### Code of Conduct

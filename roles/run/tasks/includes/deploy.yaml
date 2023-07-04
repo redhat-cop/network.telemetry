@@ -1,13 +1,8 @@
 ---
-- name: Set inventory_directory (if specified)
-  ansible.builtin.set_fact:
-    inv: "{{ action['inventory_directory'] | d(None) }}"
-
 - name: Invoke gather function
   ansible.builtin.include_role:
     name: network.base.resource_manager
   vars:
-    action: deploy
+    operation: deploy
     resources:
       - telemetry
-    inventory_directory: "{{ inv }}"
