@@ -1,4 +1,4 @@
 ---
 skip_list:
-  - no-jinja-when # a when condition in a health check requires this ignore
-  - var-naming[no-role-prefix] # this rule breaks how network validated content works
+  - no-jinja-when  # a when condition in a health check requires this ignore
+  - var-naming[no-role-prefix]  # this rule breaks how network validated content works
