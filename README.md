@@ -15,8 +15,6 @@ Tested with ansible-core >=2.13 releases.
 
 ## Installation
 
-#### Install from Automation Hub
-
 To consume this Validated Content from Automation Hub, the following needs to be added to `ansible.cfg`:
 
 ```
