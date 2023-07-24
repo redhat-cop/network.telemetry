@@ -37,22 +37,6 @@ ansible-galaxy collection install network.base
 ansible-galaxy collection install network.telemetry
 ```
 
-#### Install from GitHub
-
-```
-ansible-galaxy collection install git+https://github.com/redhat-cop/network.base
-ansible-galaxy collection install git+https://github.com/redhat-cop/network.telemetry
-```
-
-You can also include it in a `requirements.yml` file and install it via `ansible-galaxy collection install -r requirements.yml` using the format:
-
-```yaml
-collections:
-- name: https://github.com/redhat-cop/network.telemetry.git
-  type: git
-  version: main
-```
-
 ## Capabilities
 - `Gather Telemetry Facts`: Gather telemetry facts from network devices and store it as host_vars (locally or remote), enabling the creation of a telemetry source-of-truth on a per target host basis.
 
