@@ -15,16 +15,32 @@ Tested with ansible-core >=2.13 releases.
 
 ## Installation
 
-#### Prerequisites
+#### Install from Automation Hub
 
-The collection requires `network.base:2.0.0` to function.
-```
-ansible-galaxy collection install git+https://github.com/redhat-cop/network.base,2.0.0
-```
-
-#### Install `network.telemetry`
+To consume this Validated Content from Automation Hub, the following needs to be added to `ansible.cfg`:
 
 ```
+[galaxy]
+server_list = automation_hub
+
+[galaxy_server.automation_hub]
+url=https://cloud.redhat.com/api/automation-hub/
+auth_url=https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token
+token=<SuperSecretToken>
+```
+Get the required token from the [Automation Hub Web UI](https://console.redhat.com/ansible/automation-hub/token).
+
+With this configured, simply run the following commands:
+
+```
+ansible-galaxy collection install network.base
+ansible-galaxy collection install network.telemetry
+```
+
+#### Install from GitHub
+
+```
+ansible-galaxy collection install git+https://github.com/redhat-cop/network.base
 ansible-galaxy collection install git+https://github.com/redhat-cop/network.telemetry
 ```
 
