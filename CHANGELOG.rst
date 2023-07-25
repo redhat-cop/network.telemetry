@@ -5,10 +5,10 @@ Network Telemetry Collection Release Notes
 .. contents:: Topics
 
 
-v0.0.1
+v1.0.0
 =======
 
 Release Summary
 ---------------
 
-Release 0.0.1 with support for dial-out, health checks, and collector setup.
+Release v1.0.0 of network.telemetry validated content. Please refer to README for all supported operations.
