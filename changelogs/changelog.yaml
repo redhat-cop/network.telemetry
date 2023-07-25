@@ -1,10 +1,10 @@
 ---
 ancestor:
 releases:
-  "0.0.1":
+  "1.0.0":
     changes:
-      release_summary: Release 0.0.1 with support for dial-out, health checks, and collector setup.
+      release_summary: Release v1.0.0 of network.telemetry validated content. Please refer to README for all supported operations.
     fragments:
       - basic.yaml
       - release_summary.yaml
-    release_date: "2023-05-02"
+    release_date: "2023-07-25"
