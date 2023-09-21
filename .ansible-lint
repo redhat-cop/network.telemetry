@@ -1,4 +1,7 @@
 ---
+profile: production
+exclude_paths:
+  - changelogs/changelog.yaml
 skip_list:
   - no-jinja-when  # a when condition in a health check requires this ignore
   - var-naming[no-role-prefix]  # this rule breaks how network validated content works
