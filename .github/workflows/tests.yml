@@ -13,6 +13,8 @@ on:  # yamllint disable-line rule:truthy
     - cron: '0 0 * * *'
 
 jobs:
+  ansible-lint:
+    uses: ansible-network/github_actions/.github/workflows/ansible-lint.yml@main
   changelog:
     uses: ansible-network/github_actions/.github/workflows/changelog.yml@main
     if: github.event_name == 'pull_request'
@@ -45,12 +47,24 @@ jobs:
               "python-version": "3.8"
             },
             {
+              "ansible-version": "stable-2.14",
+              "python-version": "3.12"
+            },
+            {
               "ansible-version": "stable-2.15",
               "python-version": "3.7"
             },
             {
               "ansible-version": "stable-2.15",
               "python-version": "3.8"
+            },
+            {
+              "ansible-version": "stable-2.15",
+              "python-version": "3.12"
+            },
+            {
+              "ansible-version": "stable-2.16",
+              "python-version": "3.9"
             },
             {
               "ansible-version": "milestone",
@@ -87,6 +101,7 @@ jobs:
       - run: >-
           python -c "assert 'failure' not in
           set([
+          '${{ needs.ansible-lint.result }}',
           '${{ needs.changelog.result }}',
           '${{ needs.sanity.result }}',
           ])"
