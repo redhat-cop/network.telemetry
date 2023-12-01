@@ -11,7 +11,7 @@ also setup a Telegraf - Kafka stack to seemlessly integrate with [Event-Driven A
 
 ## Tested with Ansible
 
-Tested with ansible-core >=2.13 releases.
+Tested with ansible-core >=2.14 releases.
 
 ## Installation
 

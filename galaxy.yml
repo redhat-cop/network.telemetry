@@ -2,8 +2,8 @@
 authors:
   - Nilashish Chakraborty (@NilashishC)
 dependencies:
-  ansible.netcommon: ">=5.0.0"
-  ansible.utils: ">=2.9.0"
+  ansible.netcommon: ">=6.0.0"
+  ansible.utils: ">=3.0.0"
 license_file: LICENSE
 tags: [cisco, networking, eda]
 namespace: network
@@ -12,4 +12,4 @@ description: An Ansible Collection for managing telemetry configuration on netwo
 readme: README.md
 repository: https://github.com/redhat-cop/network.telemetry
 issues: https://github.com/redhat-cop/network.telemetry/issues
-version: "1.0.1"
+version: "2.0.0"
