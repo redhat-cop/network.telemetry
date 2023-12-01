@@ -23,6 +23,16 @@ Minor Changes
 
 - Support deploy_collection action.
 
+
+v1.0.1
+=======
+
+Release Summary
+---------------
+
+Re-releasing v1.0.0 with trivial CI fixes.
+
+
 v1.0.0
 ======
 

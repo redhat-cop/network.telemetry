@@ -9,6 +9,12 @@ releases:
       - basic.yaml
       - release_summary.yaml
     release_date: "2023-07-25"
+  1.0.1:
+    changes:
+      release_summary: Re-releasing v1.0.0 with trivial CI fixes.
+    fragments:
+      - release_summary.yaml
+    release_date: "2023-08-15"
   2.0.0:
     changes:
       major_changes:
