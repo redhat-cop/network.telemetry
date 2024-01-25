@@ -1,31 +1,32 @@
-# Network Telemetry Validated Content
+# Ansible Network Telemetry
 [![CI](https://github.com/redhat-cop/network.telemetry/actions/workflows/tests.yml/badge.svg?event=schedule)](https://github.com/redhat-cop/network.telemetry/actions/workflows/tests.yml)
 [![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/7404/badge)](https://bestpractices.coreinfrastructure.org/projects/7404)
 
 This repository contains the `network.telemetry` Ansible Collection.
 
-## Description
+## About
 
 The `network.telemetry` enables user to manage the Telemetry configuration on networking devices and
 also setup a Telegraf - Kafka stack to seemlessly integrate with [Event-Driven Ansible](https://www.ansible.com/use-cases/event-driven-automation).
 
-## Tested with Ansible
-
-Tested with ansible-core >=2.14 releases.
+## Requirements
+- [Required Ansible](https://github.com/redhat-cop/network.telemetry/blob/main/meta/runtime.yml)
+- [Required Content Collections](https://github.com/redhat-cop/network.telemetry/blob/main/galaxy.yml)
+- The following platform collection(s) are supported by this validated content and needs to be installed if required:
+  - [cisco.nxos](https://github.com/ansible-collections/cisco.nxos)
 
 ## Installation
+To consume this Validated Content from Automation Hub, the following needs to be added to ansible.cfg:
 
-To consume this Validated Content from Automation Hub, the following needs to be added to `ansible.cfg`:
-
-```
+```ini
 [galaxy]
 server_list = automation_hub
-
 [galaxy_server.automation_hub]
-url=https://cloud.redhat.com/api/automation-hub/
+url=https://console.redhat.com/api/automation-hub/content/published/
 auth_url=https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token
 token=<SuperSecretToken>
 ```
+
 Get the required token from the [Automation Hub Web UI](https://console.redhat.com/ansible/automation-hub/token).
 
 With this configured, simply run the following commands:
@@ -35,7 +36,11 @@ ansible-galaxy collection install network.base
 ansible-galaxy collection install network.telemetry
 ```
 
-## Capabilities
+## Tested with Ansible
+
+Tested with ansible-core >=2.14 releases.
+
+## Use Cases
 - `Gather Telemetry Facts`: Gather telemetry facts from network devices and store it as host_vars (locally or remote), enabling the creation of a telemetry source-of-truth on a per target host basis.
 
 - `Manage Telemetry Configuration`: Configure telemetry as a discrete resource on target hosts. Use locally or remotely stored source-of-truth to push (or update) configuration and also detect/remediate drifts.
@@ -209,7 +214,7 @@ Release notes are available [here](https://github.com/redhat-cop/network.telemet
 
 We welcome community contributions to this collection. If you find problems, please open an issue or create a PR against this repository.
 
-### Testing and Development
+### Testing
 
 The project uses tox to run `ansible-lint` and `ansible-test sanity`.
 Assuming this repository is checked out in the proper structure,
@@ -245,8 +250,41 @@ collector01
   ansible-test network-integration -i /path/to/inventory --python 3.9 [target]
 ```
 
+## Contributing
+
+We welcome community contributions to this collection. If you find problems, please open an issue or create a PR against this repository.
+
+Don't know how to start? Refer to the [Ansible community guide](https://docs.ansible.com/ansible/devel/community/index.html)!
+
+Want to submit code changes? Take a look at the [Quick-start development guide](https://docs.ansible.com/ansible/devel/community/create_pr_quick_start.html).
+
+We also use the following guidelines:
+
+* [Collection review checklist](https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_reviewing.html)
+* [Ansible development guide](https://docs.ansible.com/ansible/devel/dev_guide/index.html)
+* [Ansible collection development guide](https://docs.ansible.com/ansible/devel/dev_guide/developing_collections.html#contributing-to-collections)
+
+### Code of Conduct
+
+This collection follows the Ansible project's [Code of Conduct](https://docs.ansible.com/ansible/devel/community/code_of_conduct.html).
+Please read and familiarize yourself with this document.
+
+## Release notes
+
+Release notes are available [here](https://github.com/redhat-cop/network.telemetry/blob/main/CHANGELOG.rst).
+
+## Related information
+
+- [Developing network resource modules](https://github.com/ansible-network/networking-docs/blob/main/rm_dev_guide.md)
+- [Ansible Networking docs](https://github.com/ansible-network/networking-docs)
+- [Ansible Collection Overview](https://github.com/ansible-collections/overview)
+- [Ansible Roles overview](https://docs.ansible.com/ansible/2.9/user_guide/playbooks_reuse_roles.html)
+- [Ansible User guide](https://docs.ansible.com/ansible/latest/user_guide/index.html)
+- [Ansible Developer guide](https://docs.ansible.com/ansible/latest/dev_guide/index.html)
+- [Ansible Community Code of Conduct](https://docs.ansible.com/ansible/latest/community/code_of_conduct.html)
+
 ## Licensing
 
 GNU General Public License v3.0 or later.
 
-See [COPYING](https://www.gnu.org/licenses/gpl-3.0.txt) to see the full text.
+See [LICENSE](https://www.gnu.org/licenses/gpl-3.0.txt) to see the full text.
