@@ -17,7 +17,7 @@ Tested with ansible-core >=2.14 releases.
 
 To consume this Validated Content from Automation Hub, the following needs to be added to `ansible.cfg`:
 
-```
+```ini
 [galaxy]
 server_list = automation_hub
 
@@ -30,12 +30,13 @@ Get the required token from the [Automation Hub Web UI](https://console.redhat.c
 
 With this configured, simply run the following commands:
 
-```
+```bash
 ansible-galaxy collection install network.base
 ansible-galaxy collection install network.telemetry
 ```
 
 ## Capabilities
+
 - `Gather Telemetry Facts`: Gather telemetry facts from network devices and store it as host_vars (locally or remote), enabling the creation of a telemetry source-of-truth on a per target host basis.
 
 - `Manage Telemetry Configuration`: Configure telemetry as a discrete resource on target hosts. Use locally or remotely stored source-of-truth to push (or update) configuration and also detect/remediate drifts.
@@ -45,6 +46,7 @@ ansible-galaxy collection install network.telemetry
 ## Usage
 
 ### Gather Telemetry Facts with `action: gather`
+
 - This action "gathers" telemetry configuration from the target host and displays it.
 
 ```yaml
@@ -93,6 +95,7 @@ ansible-galaxy collection install network.telemetry
 ```
 
 ### Deploy Telemetry Configuration with `action: deploy`
+
 - This action "deploys" (pushes) telemetry configuration defined in the host_vars (SoT) to the target hosts.
 
 ```yaml
@@ -136,12 +139,11 @@ ansible-galaxy collection install network.telemetry
               - name: transport_connected
 ```
 
-**Supported Health Checks**
+### Supported Health Checks
 
 |     Health Check    |        Supported For       |
 |:-------------------:|:--------------------------:|
 | transport_connected |         cisco.nxos         |
-
 
 ### Deploy a telemetry collector for use with Event-Driven Ansible
 
@@ -166,7 +168,8 @@ ansible-galaxy collection install network.telemetry
         - name: deploy_collector
           kafka_external_listener: 203.0.113.100 # optional
 ```
-**Example Rulebook**
+
+### Example Rulebook
 
 ```yaml
 - name: Report incident to ServiceNow
@@ -197,6 +200,7 @@ ansible-galaxy collection install network.telemetry
 | deploy_collector | RHEL <br/> CentOS <br/> Fedora<br/> |
 
 ### Code of Conduct
+
 This collection follows the Ansible project's
 [Code of Conduct](https://docs.ansible.com/ansible/devel/community/code_of_conduct.html).
 Please read and familiarize yourself with this document.
