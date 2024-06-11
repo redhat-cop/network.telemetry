@@ -2,33 +2,42 @@ ancestor: null
 releases:
   1.0.0:
     changes:
-      release_summary:
-        Release v1.0.0 of network.telemetry validated content. Please
+      release_summary: Release v1.0.0 of network.telemetry validated content. Please
         refer to README for all supported operations.
     fragments:
-      - basic.yaml
-      - release_summary.yaml
-    release_date: "2023-07-25"
+    - basic.yaml
+    - release_summary.yaml
+    release_date: '2023-07-25'
   1.0.1:
     changes:
       release_summary: Re-releasing v1.0.0 with trivial CI fixes.
     fragments:
-      - release_summary.yaml
-    release_date: "2023-08-15"
+    - release_summary.yaml
+    release_date: '2023-08-15'
   2.0.0:
     changes:
       major_changes:
-        - Bumping `requires_ansible` to `>=2.14.0`, since previous ansible-core versions
-          are EoL now.
+      - Bumping `requires_ansible` to `>=2.14.0`, since previous ansible-core versions
+        are EoL now.
       minor_changes:
-        - Support deploy_collection action.
-      release_summary:
-        Starting from this release, the minimum `ansible-core` version
+      - Support deploy_collection action.
+      release_summary: Starting from this release, the minimum `ansible-core` version
         this collection requires is `2.14.0`. The last known version compatible with
         ansible-core<2.14 is `v1.0.1`.
     fragments:
-      - deploy_collector.yaml
-      - prep_200.yaml
-      - trivial_lint.yaml
-      - updates.yaml
-    release_date: "2023-12-01"
+    - deploy_collector.yaml
+    - prep_200.yaml
+    - trivial_lint.yaml
+    - updates.yaml
+    release_date: '2023-12-01'
+  3.0.0:
+    changes:
+      major_changes:
+      - Bumping `requires_ansible` to `>=2.15.0`, since previous ansible-core versions
+        are EoL now.
+      release_summary: 'With this release, the minimum required version of `ansible-core`
+        for this collection is `2.15.0`. The last version known to be compatible with
+        `ansible-core` versions below `2.15` is v2.0.0.'
+    fragments:
+    - bump_215.yaml
+    release_date: '2024-06-11'
