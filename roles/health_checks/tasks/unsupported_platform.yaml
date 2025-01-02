@@ -1,0 +1,6 @@
+---
+- name: Unsupported platform provided
+  ansible.builtin.fail:
+    msg: |
+      "{{ ansible_network_os }} is not supported for telemetry operations.
+      Only NX-OS devices support telemetry feature."

@@ -1,0 +1,28 @@
+---
+- name: Load specified checks
+  ansible.builtin.set_fact:
+    checks: "{{ telemetry_health_check['vars']['checks'] | d([]) }}"
+    failed_checks: []
+
+- name: Include telemetry health check tasks
+  ansible.builtin.include_tasks: "nxos/{{ check.name }}.yaml"
+  loop: "{{ telemetry_health_check['vars']['checks'] }}"
+  loop_control:
+    label: "{{ check.name }}"
+    loop_var: check
+
+- name: Validate health check results
+  ansible.builtin.set_fact:
+    failed_checks: "{{ failed_checks + [check.name] }}"
+  vars:
+    check_var: "_{{ check.name }}"
+  when: not lookup('vars', check_var)
+  loop: "{{ checks }}"
+  loop_control:
+    loop_var: check
+    label: "{{ check.name }}"
+
+- name: Show all checks that failed
+  ansible.builtin.debug:
+    var: failed_checks
+  failed_when: failed_checks

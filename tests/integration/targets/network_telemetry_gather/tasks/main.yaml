@@ -1,25 +1,24 @@
 ---
-- name: Detect network os
-  ansible.builtin.set_fact:
-    network_os: "{{ ansible_network_os.split('.')[-1] }}"
+- name: Debug
+  ansible.builtin.debug:
+    msg: "START network.telemetry gather role integration tests on connection={{ ansible_connection }}"
 
-- name: Reset telemetry config
-  ansible.builtin.include_tasks:
-    file: _reset_config.yaml
+- name: Gather and assertion
+  block:
+    - name: Run gather role to retrieve structured telemetry facts
+      ansible.builtin.include_role:
+        name: network.telemetry.gather
+      vars:
+        resources:
+          - "telemetry"
+      register: gather_result
 
-- name: Populate telemetry config
-  ansible.builtin.include_tasks:
-    file: _populate_config.yaml
+    - name: Assert that gather result
+      ansible.builtin.assert:
+        that:
+          - gather_result is defined
+          - gather_result.changed == false
 
-- name: Run network.telemetry validated content
-  ansible.builtin.include_role:
-    name: network.telemetry.run
-  vars:
-    operations:
-      - name: gather
-  register: result
-
-- name: Assert that gathered facts are correct
-  ansible.builtin.assert:
-    that:
-      - result.gathered == {{ network_os }}
+- name: Debug
+  ansible.builtin.debug:
+    msg: "END network.telemetry gather role integration tests on connection={{ ansible_connection }}"

@@ -1,0 +1,4 @@
+---
+- name: Include deploy tasks
+  ansible.builtin.include_tasks:
+    file: deploy_collector.yaml

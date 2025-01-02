@@ -1,0 +1,6 @@
+---
+- name: Include validation tasks
+  ansible.builtin.include_tasks: validation.yaml
+
+- name: Run platform-specific health checks
+  ansible.builtin.include_tasks: "{{ ansible_network_os.split('.')[-1] }}_checks.yaml"

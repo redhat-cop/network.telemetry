@@ -1,0 +1,10 @@
+---
+- name: Check if telemetry configuration files exist
+  ansible.builtin.stat:
+    path: "{{ test_data_store['local'] }}/host_vars/{{ inventory_hostname }}/{{ filename }}.yaml"
+  register: result
+
+- name: Assert that telemetry configuration files were created
+  ansible.builtin.assert:
+    that:
+      - result.stat.exists == true

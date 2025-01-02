@@ -1,0 +1,44 @@
+---
+- name: Debug
+  ansible.builtin.debug:
+    msg: "START network.telemetry detect role integration tests on connection={{ ansible_connection }}"
+
+- name: Cleanup, persist and detect drift
+  block:
+    - name: Reset configuration
+      ansible.builtin.include_tasks: _cleanup.yaml
+
+    # Set resources to monitor for telemetry
+    - name: Set resources
+      ansible.builtin.set_fact:
+        test_resources:
+          - "telemetry"
+          - "telemetry_transport"
+
+    - name: Set local data_store
+      ansible.builtin.set_fact:
+        test_data_store:
+          local: "~/test_backup"
+
+    # Run persist role first to capture initial state
+    - name: Run persist role
+      ansible.builtin.include_role:
+        name: network.telemetry.persist
+      vars:
+        data_store: "{{ test_data_store }}"
+
+    # Then run detect role to check for changes
+    - name: Run detect role
+      ansible.builtin.include_role:
+        name: network.telemetry.detect
+      vars:
+        data_store: "{{ test_data_store }}"
+      register: detect_result
+
+  always:
+    - name: Reset configuration
+      ansible.builtin.include_tasks: _cleanup.yaml
+
+- name: Debug
+  ansible.builtin.debug:
+    msg: "END network.telemetry detect role integration tests on connection={{ ansible_connection }}"

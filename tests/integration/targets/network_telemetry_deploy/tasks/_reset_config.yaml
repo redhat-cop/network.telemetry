@@ -1,5 +1,0 @@
----
-- name: Reset telemetry configuration
-  ansible.netcommon.cli_config:
-    config: "{{ lookup('file', 'files/reset/{{ network_os }}.txt') }}"
-    diff_match: none
