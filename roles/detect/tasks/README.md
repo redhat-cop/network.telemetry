@@ -7,8 +7,7 @@ The `network.telemetry.detect` role identifies configuration drift in telemetry 
 - Detect changes in telemetry configurations from saved states
 - Compare current telemetry transport settings with baseline
 - Identify drift in telemetry subscription configurations
-- Support for multiple data store options (local/remote)
-- Integration with network.telemetry.persist role for state management
+
 
 ## Variables
 
@@ -16,7 +15,6 @@ The `network.telemetry.detect` role identifies configuration drift in telemetry 
 |:---------------------|:-------------:|:--------:|:----:|:------------------------------------------------------------- |:------------------------:|
 | `ansible_network_os` | `""`          | no       | str  | Network OS to be used during detection.                       | `"cisco.nxos.nxos"`      |
 | `data_store`         | `""`          | yes      | dict | Location of persisted configurations for comparison.          | See usage example below. |
-| `check_mode`         | `false`       | no       | bool | Run in check mode without making changes.                     | `true`                   |
 
 ## Usage
 Below is an example playbook demonstrating how to use the detect role to identify configuration drift:

@@ -7,7 +7,7 @@ The `persist` role enables users to fetch facts for telemetry configurations and
 - Fetch structured facts for telemetry resources and transport settings
 - Persist gathered telemetry configurations to local directories or remote SCM repositories
 - Enable centralized and version-controlled storage for network telemetry policies
-- Support for various telemetry components including transport, subscriptions, and destinations
+
 
 ## Variables
 
@@ -65,4 +65,3 @@ See [LICENSE](https://www.gnu.org/licenses/gpl-3.0.txt) to see the full text.
 
 ## Author Information
 - Ansible Network Content Team
-

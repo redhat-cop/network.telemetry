@@ -5,3 +5,4 @@ supported_distros:
   - rhel
   - fedora
   - centos
+  - redhat

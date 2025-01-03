@@ -7,7 +7,6 @@ The `network.telemetry.deploy` role reads telemetry configuration facts from a p
 - Read telemetry configuration data from local or remote repositories
 - Deploy telemetry configurations only when changes are detected
 - Support for integration with Git repositories for version control
-- Maintain consistent telemetry policies across network infrastructure
 - Automated cleanup and persistence of telemetry configurations
 
 ## Variables
@@ -40,6 +39,7 @@ Below is an example playbook demonstrating how to use the deploy role to retriev
 ```
 ## Example Output
 When the playbook is executed successfully, the role will output a report showing the deployment status of telemetry configurations.
+
 ## License
 GNU General Public License v3.0 or later.
 See [LICENSE](https://www.gnu.org/licenses/gpl-3.0.txt) to see the full text.
