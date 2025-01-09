@@ -1,0 +1,32 @@
+---
+- name: Get target type
+  ansible.builtin.set_fact:
+    is_network_device: "{{ ansible_network_os is defined }}"
+
+- name: Gather facts for non-network devices
+  ansible.builtin.setup:
+  when: not is_network_device
+  register: host_facts
+
+- name: Set distribution for non-network devices
+  ansible.builtin.set_fact:
+    distro: "{{ host_facts.ansible_facts.ansible_distribution | lower if host_facts is defined else '' }}"
+  when: not is_network_device
+
+- name: Check if distro is supported
+  ansible.builtin.assert:
+    that: distro in supported_distros
+    fail_msg: "{{ distro }} is not supported."
+  when: not is_network_device
+
+- name: Start action deploy_collector
+  ansible.builtin.debug:
+    msg: "### Starting deploy_collector action ###"
+
+- name: Install docker
+  ansible.builtin.include_tasks: docker.yaml
+  when: not is_network_device
+
+- name: Start docker containers
+  ansible.builtin.include_tasks: docker_compose.yaml
+  when: not is_network_device

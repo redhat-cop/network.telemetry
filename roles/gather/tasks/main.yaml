@@ -1,0 +1,7 @@
+---
+- name: Invoke deploy function
+  ansible.builtin.include_role:
+    name: network.base.gather
+  vars:
+    resources:
+      - "telemetry"

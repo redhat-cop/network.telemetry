@@ -1,0 +1,22 @@
+---
+- name: Debug
+  ansible.builtin.debug:
+    msg: "START network.telemetry health_check role integration tests on connection={{ ansible_connection }}"
+
+- name: Perform health check on telemetry configuration
+  block:
+    - name: Run network.telemetry validated content with health_checks operation
+      ansible.builtin.include_role:
+        name: network.telemetry.health_checks
+      vars:
+        telemetry_health_check:
+          name: health_check
+          vars:
+            details: true
+            checks:
+              - name: transport_connected
+      register: telemetry_result
+
+- name: Debug
+  ansible.builtin.debug:
+    msg: "END network.telemetry health_check role integration tests on connection={{ ansible_connection }}"

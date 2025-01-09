@@ -1,0 +1,11 @@
+# roles/health_checks/tasks/validation.yml
+---
+- name: Set supported platforms
+  ansible.builtin.set_fact:
+    supported_platforms:
+      - "nxos" # Only NXOS supports telemetry
+
+- name: Validate platform support
+  ansible.builtin.assert:
+    that: ansible_network_os.split('.')[-1] in supported_platforms
+    fail_msg: "Platform {{ ansible_network_os }} not supported for telemetry"

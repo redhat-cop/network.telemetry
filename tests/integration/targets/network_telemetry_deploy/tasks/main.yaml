@@ -1,27 +1,45 @@
 ---
-- name: Detect network os
-  ansible.builtin.set_fact:
-    network_os: "{{ ansible_network_os.split('.')[-1] }}"
+- name: Debug
+  ansible.builtin.debug:
+    msg: "START network.telemetry deploy role integration tests on connection={{ ansible_connection }}"
 
-- name: Set inventory_directory
-  ansible.builtin.set_fact:
-    inv_dir: "{{ role_path }}/files/populate"
+- name: Cleanup, persist, and Deploy
+  block:
+    - name: Reset configuration
+      ansible.builtin.include_tasks: _cleanup.yaml
 
-- name: Reset telemetry config
-  ansible.builtin.include_tasks:
-    file: _reset_config.yaml
+    - name: Set local data_store
+      ansible.builtin.set_fact:
+        test_data_store:
+          local: "~/test_backup"
 
-- name: Run network.telemetry validated content with deploy action
-  ansible.builtin.include_role:
-    name: network.telemetry.run
-  vars:
-    operations:
-      - name: deploy
-        inventory_directory: "{{ inv_dir }}"
-      - name: gather
-  register: result
+    - name: Set resources
+      ansible.builtin.set_fact:
+        test_resources:
+          - "telemetry"
 
-- name: Assert that gathered facts are correct
-  ansible.builtin.assert:
-    that:
-      - result.gathered == {{ network_os }}
+    - name: Run persist role to gather and save telemetry facts
+      ansible.builtin.include_role:
+        name: network.telemetry.persist
+      vars:
+        data_store: "{{ test_data_store }}"
+
+    - name: Run network.telemetry validated content with deploy operation
+      ansible.builtin.include_role:
+        name: network.telemetry.deploy
+      vars:
+        data_store: "{{ test_data_store }}"
+      register: deploy_result
+
+    - name: Assert that result
+      ansible.builtin.assert:
+        that:
+          - deploy_result.changed == false
+
+  always:
+    - name: Reset configuration
+      ansible.builtin.include_tasks: _cleanup.yaml
+
+- name: Debug
+  ansible.builtin.debug:
+    msg: "END network.telemetry deploy role integration tests on connection={{ ansible_connection }}"
