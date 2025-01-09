@@ -215,8 +215,6 @@ We welcome community contributions to this collection. If you find problems, ple
 
 ### Testing and Development
 
-The integration test for the `deploy_collector` action requires a target machine running telegraf/kafka. By default, it assumes the target machine's IP address is 192.168.0.21.
-
 To test with a different IP address:
  Update the `inventory.ini` file with your target machine's IP address:
    ```ini
