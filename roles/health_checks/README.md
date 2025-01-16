@@ -25,9 +25,9 @@ The `deploy_health_check` role automates monitoring of telemetry configuration h
 ```yaml
 deploy_health_check/
 ├── tasks/
-│   ├── main.yaml           
-│   ├── validation.yaml     
-│   ├── nxos_checks.yaml    
+│   ├── main.yaml
+│   ├── validation.yaml
+│   ├── nxos_checks.yaml
 │   ├── unsupported_platform.yaml
 │   └── nxos/
 │       └── transport_connected.yaml
