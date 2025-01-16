@@ -1,7 +1,7 @@
 version: "3"
 services:
   telegraf:
-    image: telegraf:latest
+    image: mirror.gcr.io/telegraf:latest
     container_name: telegraf
     restart: always
     ports:
@@ -13,7 +13,7 @@ services:
     entrypoint: /entrypoint.sh -config /etc/telegraf/telegraf.conf -config-directory /etc/telegraf/telegraf.d
 
   zookeeper:
-    image: confluentinc/cp-zookeeper:7.3.2
+    image: mirror.gcr.io/confluentinc/cp-zookeeper:7.3.2
     container_name: zookeeper
     networks:
       - telemetry
@@ -22,7 +22,7 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
 
   broker:
-    image: confluentinc/cp-kafka:7.3.2
+    image: mirror.gcr.io/confluentinc/cp-kafka:7.3.2
     container_name: broker
     networks:
       - telemetry
