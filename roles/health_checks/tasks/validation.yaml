@@ -3,7 +3,8 @@
 - name: Set supported platforms
   ansible.builtin.set_fact:
     supported_platforms:
-      - "nxos" # Only NXOS supports telemetry
+      # Only NXOS supports telemetry
+      - "nxos"
 
 - name: Validate platform support
   ansible.builtin.assert:
